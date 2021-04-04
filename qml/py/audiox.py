@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import pyotherside
@@ -7,6 +6,10 @@ import os
 import shutil
 import subprocess
 from pathlib import Path
+
+# POETASTER
+import sys
+sys.path.append('/usr/share/harbour-audiocut/lib/')
 
 
 # check if pydub is installed
@@ -33,8 +36,8 @@ def getHomePath ():
     pyotherside.send('homePathFolder', homeDir )
 
 def createTmpAndSaveFolder ( tempAudioFolderPath, saveAudioFolderPath ):
-    if os.path.exists("/" + "/home" + "/nemo" + "/audioworks_tmp/"): #if folder exists from older versions, remove it
-        shutil.rmtree("/" + "/home" + "/nemo" + "/audioworks_tmp/")    
+    if os.path.exists("/" + "/home" + "/defaultuser" + "/audioworks_tmp/"): #if folder exists from older versions, remove it
+        shutil.rmtree("/" + "/home" + "/defaultuser" + "/audioworks_tmp/")
     if not os.path.exists( "/"+tempAudioFolderPath ):
         os.makedirs( "/"+tempAudioFolderPath )
         pyotherside.send('folderExistence', )
@@ -126,7 +129,7 @@ def saveFile ( inputPathPy, savePath, tempAudioFolderPath, tempAudioType, newFil
 def createWaveformImage ( inputPathPy, outputWaveformPath, waveformColor, waveformPixelLength, waveformPixelHeight, stretch ):
     waveformPixelLength = str(int(waveformPixelLength))
     waveformPixelHeight = str(int(waveformPixelHeight))
-    subprocess.run([ "ffmpeg", "-y", "-i", "/"+inputPathPy, "-filter_complex", stretch+"showwavespic=s="+waveformPixelLength+"x"+waveformPixelHeight+":colors="+waveformColor, "-frames:v", "1", "/"+outputWaveformPath, "-hide_banner" ])
+    subprocess.run([ "/usr/share/harbour-audiocut/lib/ffmpeg/ffmpeg_static", "-y", "-i", "/"+inputPathPy, "-filter_complex", stretch+"showwavespic=s="+waveformPixelLength+"x"+waveformPixelHeight+":colors="+waveformColor, "-frames:v", "1", "/"+outputWaveformPath, "-hide_banner" ])
     sound = AudioSegment.from_file(inputPathPy)
     audioLengthMilliseconds = len(sound)
     pyotherside.send('loadImageWaveform', outputWaveformPath, audioLengthMilliseconds )
@@ -288,7 +291,7 @@ def highPassFilter ( inputPathPy, outputPathPy, tempAudioType, filterFrequency, 
 # #######################################################################################
 
 def denoiseAudio ( inputPathPy, outputPathPy, tempAudioType, filterType ):
-    subprocess.run([ "ffmpeg", "-y", "-i", "/"+inputPathPy, "-af", filterType, "/"+outputPathPy, "-hide_banner" ])
+    subprocess.run([ "/usr/share/harbour-audiocut/lib/ffmpeg/ffmpeg_static", "-y", "-i", "/"+inputPathPy, "-af", filterType, "/"+outputPathPy, "-hide_banner" ])
     pyotherside.send('loadTempAudio', outputPathPy )
 
 def trimSilence ( inputPathPy, outputPathPy, tempAudioType, fromPosMillisecond, toPosMillisecond, breakMS, breakDB, breakPadding ):
@@ -298,7 +301,7 @@ def trimSilence ( inputPathPy, outputPathPy, tempAudioType, fromPosMillisecond, 
     pyotherside.send('loadTempAudio', outputPathPy )
 
 def echoEffect ( inputPathPy, outputPathPy, tempAudioType, in_gain, out_gain, delays, decays ):
-    subprocess.run([ "ffmpeg", "-y", "-i", "/"+inputPathPy, "-af", "aecho=" + str(in_gain) + ":" + str(out_gain) + ":" + str(delays) + ":" + str(decays), "/"+outputPathPy, "-hide_banner" ])
+    subprocess.run([ "/usr/share/harbour-audiocut/lib/ffmpeg/ffmpeg_static", "-y", "-i", "/"+inputPathPy, "-af", "aecho=" + str(in_gain) + ":" + str(out_gain) + ":" + str(delays) + ":" + str(decays), "/"+outputPathPy, "-hide_banner" ])
     pyotherside.send('loadTempAudio', outputPathPy )
 
 

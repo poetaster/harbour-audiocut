@@ -41,3 +41,32 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/harbour-audiocut-de.ts
 
 HEADERS +=
+
+# include precompiled static library according to architecture (arm, i486_32bit, arm64)
+equals(QT_ARCH, arm): {
+  ffmpeg_static.files = lib/ffmpeg/arm32/*
+  #frei0r_plugins.files = lib/frei0r/arm32/*
+  message("!!!architecture armv7hl detected!!!");
+}
+equals(QT_ARCH, arm64): {
+  ffmpeg_static.files = lib/ffmpeg/arm64/*
+  #frei0r_plugins.files = lib/frei0r/arm64/*
+  message("!!!architecture arm64 detected!!!");
+}
+equals(QT_ARCH, i386): {
+  ffmpeg_static.files = lib/ffmpeg/x86_32/*
+  #frei0r_plugins.files = lib/frei0r/x86_32/*
+  message("!!!architecture x86 / 32bit detected!!!");
+}
+
+ffmpeg_static.path = /usr/share/harbour-audiocut/lib/ffmpeg
+#frei0r_plugins.path = /usr/lib/frei0r-1/
+
+INSTALLS += ffmpeg_static #frei0r_plugins
+
+DISTFILES += lib/pydub \
+
+python.files = lib/pydub/*.py
+python.path = "/usr/share/harbour-audiocut/lib/pydub"
+
+INSTALLS += python
