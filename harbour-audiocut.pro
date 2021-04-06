@@ -17,6 +17,8 @@ CONFIG += sailfishapp
 SOURCES += src/harbour-audiocut.cpp
 
 DISTFILES += qml/harbour-audiocut.qml \
+    lib/ffmpeg/arm64/ffmpeg_static \
+    lib/ffmpeg/x86_32/ffmpeg_static \
     qml/cover/CoverPage.qml \
     qml/pages/FirstPage.qml \
     qml/pages/InfoPage.qml \
