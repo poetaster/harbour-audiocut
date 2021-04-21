@@ -5,27 +5,27 @@
     <name>About</name>
     <message>
         <source>About Audioworks</source>
-        <translation type="unfinished"></translation>
+        <translation>Om Audioworks</translation>
     </message>
     <message>
         <source>Copyright © 2020 Tobias Planitzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Copyright © 2020 Tobias Planitzer</translation>
     </message>
     <message>
         <source> © 2021 Mark Washeim</source>
-        <translation type="unfinished"></translation>
+        <translation> © 2021 Mark Washeim</translation>
     </message>
     <message>
         <source>An Audio Tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Ett ljudverktyg</translation>
     </message>
     <message>
         <source>Audioworks is licensed under the terms</source>
-        <translation type="unfinished"></translation>
+        <translation>Audioworks är licensierat under villkoren</translation>
     </message>
     <message>
         <source>of the GNU General Public License v3.</source>
-        <translation type="unfinished"></translation>
+        <translation>för GNU General Public License v3.</translation>
     </message>
 </context>
 <context>
@@ -192,7 +192,7 @@
     </message>
     <message>
         <source>Audioworks</source>
-        <translation type="unfinished"></translation>
+        <translation>Audioworks</translation>
     </message>
 </context>
 <context>
