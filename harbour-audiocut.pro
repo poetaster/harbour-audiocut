@@ -17,16 +17,13 @@ CONFIG += sailfishapp
 SOURCES += src/harbour-audiocut.cpp
 
 DISTFILES += qml/harbour-audiocut.qml \
-    lib/ffmpeg/arm64/ffmpeg_static \
-    lib/ffmpeg/x86_32/ffmpeg_static \
     qml/cover/CoverPage.qml \
+    qml/pages/About.qml \
     qml/pages/FirstPage.qml \
-    qml/pages/InfoPage.qml \
     qml/pages/SavePage.qml \
     rpm/harbour-audiocut.changes.in \
     rpm/harbour-audiocut.changes.run.in \
     rpm/harbour-audiocut.spec \
-    rpm/harbour-audiocut.yaml \
     translations/*.ts \
     harbour-audiocut.desktop
 
@@ -40,35 +37,32 @@ CONFIG += sailfishapp_i18n
 # planning to localize your app, remember to comment out the
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
-TRANSLATIONS += translations/harbour-audiocut-de.ts
+TRANSLATIONS += translations/harbour-audiocut-de.ts \
+                translations/harbour-audiocut-sv.ts \
+                translations/harbour-audiocut-zh_CN.ts
 
 HEADERS +=
 
 # include precompiled static library according to architecture (arm, i486_32bit, arm64)
-equals(QT_ARCH, arm): {
-  ffmpeg_static.files = lib/ffmpeg/arm32/*
-  #frei0r_plugins.files = lib/frei0r/arm32/*
-  message("!!!architecture armv7hl detected!!!");
-}
-equals(QT_ARCH, arm64): {
-  ffmpeg_static.files = lib/ffmpeg/arm64/*
-  #frei0r_plugins.files = lib/frei0r/arm64/*
-  message("!!!architecture arm64 detected!!!");
-}
-equals(QT_ARCH, i386): {
-  ffmpeg_static.files = lib/ffmpeg/x86_32/*
-  #frei0r_plugins.files = lib/frei0r/x86_32/*
-  message("!!!architecture x86 / 32bit detected!!!");
-}
+#equals(QT_ARCH, arm): {
+#  ffmpeg_static.files = lib/ffmpeg/arm32/*
+#  message("!!!architecture armv7hl detected!!!");
+#}
+#equals(QT_ARCH, arm64): {
+#  ffmpeg_static.files = lib/ffmpeg/arm64/*
+#  message("!!!architecture arm64 detected!!!");
+#}
+#equals(QT_ARCH, i386): {
+#  ffmpeg_static.files = lib/ffmpeg/x86_32/*
+#  message("!!!architecture x86 / 32bit detected!!!");
+#}
 
-ffmpeg_static.path = /usr/share/harbour-audiocut/lib/ffmpeg
-#frei0r_plugins.path = /usr/lib/frei0r-1/
+#ffmpeg_static.path = /usr/share/harbour-audiocut/lib/ffmpeg
+#INSTALLS += ffmpeg_static
 
-INSTALLS += ffmpeg_static #frei0r_plugins
+#DISTFILES += lib/pydub \
 
-DISTFILES += lib/pydub \
-
-python.files = lib/pydub/*.py
+python.files = lib/pydub/*
 python.path = "/usr/share/harbour-audiocut/lib/pydub"
 
 INSTALLS += python

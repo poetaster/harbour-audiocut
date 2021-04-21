@@ -6,18 +6,20 @@
 Name:       harbour-audiocut
 
 # >> macros
+%define __provides_exclude_from ^%{_datadir}/%{name}/lib/.*\\.so\\>
+%define __requires_exclude_from ^%{_datadir}/%{name}/lib/.*\\.so\\>
 # << macros
 
 Summary:    Audioworks
-Version:    0.2
-Release:    1.0
+Version:    1.0
+Release:    1
 Group:      Qt/Qt
-License:    MIT
+License:    GPLv3
 URL:        https://github.com/poetaster/harbour-audiocut
 Source0:    %{name}-%{version}.tar.bz2
-Source100:  harbour-audiocut.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   pyotherside-qml-plugin-python3-qt5
+
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)

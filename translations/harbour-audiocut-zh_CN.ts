@@ -2,6 +2,33 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>About</name>
+    <message>
+        <source>About Audioworks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copyright © 2020 Tobias Planitzer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> © 2021 Mark Washeim</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An Audio Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Audioworks is licensed under the terms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>of the GNU General Public License v3.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FirstPage</name>
     <message>
         <source>Select audio file</source>
@@ -18,10 +45,6 @@
     <message>
         <source>Save</source>
         <translation>保存</translation>
-    </message>
-    <message>
-        <source>Audiocut</source>
-        <translation>音频剪切</translation>
     </message>
     <message>
         <source>python3-pydub is not installed</source>
@@ -167,12 +190,9 @@
         <source>at cursor</source>
         <translation>光标</translation>
     </message>
-</context>
-<context>
-    <name>InfoPage</name>
     <message>
-        <source>Info</source>
-        <translation>信息</translation>
+        <source>Audioworks</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

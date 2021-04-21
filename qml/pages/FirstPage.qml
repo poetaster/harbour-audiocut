@@ -15,11 +15,11 @@ Page {
     property string origAudioName
     property string origAudioType
     property string homeDirectory
-    property string tempAudioFolderPath // : "/home" + "/nemo" + "/.audioworks_tmp/"
+    property string tempAudioFolderPath
     property string tempAudioType : "wav"
     property string outputPathPy
     property string inputPathPy : decodeURIComponent( "/" + idAudioPlayer.source.toString().replace(/^(file:\/{3})|(qrc:\/{2})|(http:\/{2})/,"") )
-    property string saveAudioFolderPath // : "/home" + "/nemo" + "/Music" + "/Audioworks/"
+    property string saveAudioFolderPath
     property string symbolSourceFolder : "/usr" + "/share" + "/harbour-audiocut" + "/qml" + "/symbols/"
     property string lastTmpAudio2delete
     property string lastTmpImage2delete
@@ -142,11 +142,11 @@ Page {
 
             // Handlers do something to QML whith received Infos from Pythonfile (=pyotherside.send)
             setHandler('homePathFolder', function( homeDir ) {
-                tempAudioFolderPath = homeDir + "/.audioworks_tmp/"
+                tempAudioFolderPath = homeDir + "/.cache/harbour-audiocut/"
                 saveAudioFolderPath = homeDir + "/Music" + "/Audioworks/"
                 homeDirectory = homeDir
-                py.createTmpAndSaveFolder()
-                py.deleteAllTMPFunction()
+                py.createTmpAndSaveFolder(tempAudioFolderPath, saveAudioFolderPath )
+                py.deleteAllTMPFunction(tempAudioFolderPath)
             });
             setHandler('warningPydubNotAvailable', function() {
                 warningNoPydub = true
@@ -407,7 +407,7 @@ Page {
                 text: qsTr("Info")
                 onClicked: {
                     idAudioPlayer.stop()
-                    pageStack.push(Qt.resolvedUrl("InfoPage.qml"), {} )
+                    pageStack.push(Qt.resolvedUrl("About.qml"), {} )
                 }
             }
             MenuItem {
@@ -462,7 +462,7 @@ Page {
                         horizontalAlignment: Text.AlignRight
                         font.pixelSize: Theme.fontSizeLarge
                         color: Theme.primaryColor
-                        text: qsTr("Audiocut")
+                        text: qsTr("Audioworks")
                     }
                     Label {
                         id: idLabelFilePath
