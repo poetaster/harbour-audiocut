@@ -143,7 +143,7 @@ Page {
             // Handlers do something to QML whith received Infos from Pythonfile (=pyotherside.send)
             setHandler('homePathFolder', function( homeDir ) {
                 tempAudioFolderPath = homeDir + "/.cache/harbour-audiocut/"
-                saveAudioFolderPath = homeDir + "/Music" + "/Audioworks/"
+                saveAudioFolderPath = homeDir + "/Music/"
                 homeDirectory = homeDir
                 py.createTmpAndSaveFolder(tempAudioFolderPath, saveAudioFolderPath )
                 py.deleteAllTMPFunction(tempAudioFolderPath)
