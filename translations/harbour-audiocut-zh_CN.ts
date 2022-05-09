@@ -12,10 +12,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> © 2021 Mark Washeim</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>An Audio Tool</source>
         <translation type="unfinished"></translation>
     </message>
@@ -25,6 +21,10 @@
     </message>
     <message>
         <source>of the GNU General Public License v3.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> © 2021-22 Mark Washeim</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

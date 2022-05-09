@@ -124,13 +124,13 @@ def saveFile ( inputPathPy, savePath, tempAudioFolderPath, tempAudioType, newFil
 
 # Function for waveform creation
 # #######################################################################################
-
+# This one from video works
+#subprocess.run([ "ffmpeg", "-hide_banner", "-y", "-ss", thumbnailSec, "-i", "/"+inputPathPy, "-frames:v", "1", "/"+thumbnailPath ], shell = False )
 
 def createWaveformImage ( inputPathPy, outputWaveformPath, waveformColor, waveformPixelLength, waveformPixelHeight, stretch ):
     waveformPixelLength = str(int(waveformPixelLength))
     waveformPixelHeight = str(int(waveformPixelHeight))
-    #subprocess.run([ "/usr/share/harbour-audiocut/lib/ffmpeg/ffmpeg_static", "-y", "-i", "/"+inputPathPy, "-filter_complex", stretch+"showwavespic=s="+waveformPixelLength+"x"+waveformPixelHeight+":colors="+waveformColor, "-frames:v", "1", "/"+outputWaveformPath, "-hide_banner" ])
-    subprocess.run([ "/usr/bin/ffmpeg", "-y", "-i", "/"+inputPathPy, "-filter_complex", stretch+"showwavespic=s="+waveformPixelLength+"x"+waveformPixelHeight+":colors="+waveformColor, "-frames:v", "1", "/"+outputWaveformPath, "-hide_banner" ])
+    subprocess.run([ "ffmpeg", "-hide_banner", "-y", "-i", "/"+inputPathPy, "-filter_complex", stretch+"showwavespic=s="+waveformPixelLength+"x"+waveformPixelHeight+":colors="+waveformColor, "-frames:v", "1", "/"+outputWaveformPath ])
     sound = AudioSegment.from_file(inputPathPy)
     audioLengthMilliseconds = len(sound)
     pyotherside.send('loadImageWaveform', outputWaveformPath, audioLengthMilliseconds )

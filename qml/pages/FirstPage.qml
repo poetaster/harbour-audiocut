@@ -7,7 +7,7 @@ import io.thp.pyotherside 1.4
 Page {
     id: page
     allowedOrientations: Orientation.Portrait //All
-
+    property bool debug : true
     // file variables
     property string origAudioFilePath
     property string origAudioFileName
@@ -15,7 +15,7 @@ Page {
     property string origAudioName
     property string origAudioType
     property string homeDirectory
-    property string tempAudioFolderPath
+    property string tempAudioFolderPath: StandardPaths.home + '/.cache/de.poetaster/harbour-audiocut'
     property string tempAudioType : "wav"
     property string outputPathPy
     property string inputPathPy : decodeURIComponent( "/" + idAudioPlayer.source.toString().replace(/^(file:\/{3})|(qrc:\/{2})|(http:\/{2})/,"") )
@@ -56,6 +56,7 @@ Page {
 
 
     Component.onCompleted: {
+        if(debug) console.debug(tempAudioFolderPath)
         py.getHomePath()
     }
 
@@ -145,7 +146,8 @@ Page {
                 tempAudioFolderPath = homeDir + "/.cache/de.poetaster/harbour-audiocut/"
                 saveAudioFolderPath = homeDir + "/Music/"
                 homeDirectory = homeDir
-                py.createTmpAndSaveFolder(tempAudioFolderPath, saveAudioFolderPath )
+                //py.createTmpAndSaveFolder(tempAudioFolderPath, saveAudioFolderPath )
+                py.createTmpAndSaveFolder( )
                 py.deleteAllTMPFunction(tempAudioFolderPath)
             });
             setHandler('warningPydubNotAvailable', function() {
@@ -244,6 +246,8 @@ Page {
             idImageWaveform.source = ""
             idImageWaveformZoom.source = ""
             var outputWaveformImagePath =  tempAudioFolderPath + "waveform" + ".tmp" + undoNr + ".png"
+            if (debug == true) console.debug(inputPathPy)
+            if (debug == true) console.debug(outputWaveformImagePath)
             var waveformColor = "yellow"
             var stretch = "" //"compand,"
             var waveformPixelLength = idWaveformOverview.width * zoomAreaFactor

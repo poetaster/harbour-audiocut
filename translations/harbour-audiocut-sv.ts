@@ -12,10 +12,6 @@
         <translation>Copyright © 2020 Tobias Planitzer</translation>
     </message>
     <message>
-        <source> © 2021 Mark Washeim</source>
-        <translation> © 2021 Mark Washeim</translation>
-    </message>
-    <message>
         <source>An Audio Tool</source>
         <translation>Ett ljudverktyg</translation>
     </message>
@@ -26,6 +22,10 @@
     <message>
         <source>of the GNU General Public License v3.</source>
         <translation>för GNU General Public License v3.</translation>
+    </message>
+    <message>
+        <source> © 2021-22 Mark Washeim</source>
+        <translation type="unfinished"> © 2021 Mark Washeim {2021-22 ?}</translation>
     </message>
 </context>
 <context>

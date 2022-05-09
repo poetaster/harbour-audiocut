@@ -2,7 +2,7 @@
 Type=Application
 X-Nemo-Application-Type=silica-qt5
 Icon=harbour-audiocut
-Exec=harbour-audiocut
+Exec=harbour-audiocut %u
 Name=Audioworks
 # translation example:
 # your app name in German locale (de)
@@ -11,7 +11,8 @@ Name=Audioworks
 # a different app name in German locale (de).
 # Name[de]=Audiocut
 
-#[X-Sailjail]
+[X-Sailjail]
+Sandboxing=Disabled
 #OrganizationName=de.poetaster
 #ApplicationName=harbour-audiocut
-#Permissions=Camera;Audio;Microphone;Internet;MediaIndexing;RemovableMedia;UserDirs
+#Permissions=Camera;Audio;Microphone;MediaIndexing;RemovableMedia;UserDirs;Compatibility

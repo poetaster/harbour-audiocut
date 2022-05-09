@@ -11,7 +11,7 @@ Name:       harbour-audiocut
 # << macros
 
 Summary:    Audioworks
-Version:    1.1
+Version:    1.2
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -19,11 +19,9 @@ URL:        https://github.com/poetaster/harbour-audiocut
 Source0:    %{name}-%{version}.tar.bz2
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   pyotherside-qml-plugin-python3-qt5
-%if "%{?vendor}" == "chum"
 Requires:   ffmpeg
 Requires:   ffmpeg-tools
 BuildRequires:  qt5-qttools-linguist
-%endif
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
