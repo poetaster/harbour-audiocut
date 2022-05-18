@@ -22,9 +22,10 @@ from pydub import effects
 from pydub.utils import mediainfo
 
 # check if LAME is manually installed by user
-retval = subprocess.call(["which", "lame"])
-if retval != 0:
-    pyotherside.send('warningLameNotAvailable', )
+# this is not allowed in harbour
+#retval = subprocess.call(["which", "lame"])
+#if retval != 0:
+#    pyotherside.send('warningLameNotAvailable', )
 
 
 
@@ -36,8 +37,9 @@ def getHomePath ():
     pyotherside.send('homePathFolder', homeDir )
 
 def createTmpAndSaveFolder ( tempAudioFolderPath, saveAudioFolderPath ):
-    if os.path.exists("/" + "/home" + "/defaultuser" + "/audioworks_tmp/"): #if folder exists from older versions, remove it
-        shutil.rmtree("/" + "/home" + "/defaultuser" + "/audioworks_tmp/")
+    # not allowed
+    #if os.path.exists("/" + "/home" + "/defaultuser" + "/audioworks_tmp/"): #if folder exists from older versions, remove it
+    #    shutil.rmtree("/" + "/home" + "/defaultuser" + "/audioworks_tmp/")
     if not os.path.exists( "/"+tempAudioFolderPath ):
         os.makedirs( "/"+tempAudioFolderPath )
         pyotherside.send('folderExistence', )
