@@ -21,6 +21,7 @@ Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   pyotherside-qml-plugin-python3-qt5
 Requires:   ffmpeg
 Requires:   ffmpeg-tools
+Requires:   libsailfishapp-launcher
 
 BuildRequires:  qt5-qttools-linguist
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
@@ -81,7 +82,7 @@ desktop-file-install --delete-original       \
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}
+%defattr(0644,root,root,-)
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png

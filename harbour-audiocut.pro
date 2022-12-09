@@ -12,9 +12,7 @@
 # The name of your application
 TARGET = harbour-audiocut
 
-CONFIG += sailfishapp
-
-SOURCES += src/harbour-audiocut.cpp
+CONFIG += sailfishapp_qml
 
 DISTFILES += qml/harbour-audiocut.qml \
     qml/cover/CoverPage.qml \

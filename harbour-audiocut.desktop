@@ -2,7 +2,7 @@
 Type=Application
 X-Nemo-Application-Type=silica-qt5
 Icon=harbour-audiocut
-Exec=harbour-audiocut %u
+Exec=sailfish-qml harbour-audiocut %u
 Name=Audioworks
 # translation example:
 # your app name in German locale (de)
