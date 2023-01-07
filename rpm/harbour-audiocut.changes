@@ -11,6 +11,7 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 #
+
 * Sat Jan 07 2023 Mark Washeim <blueprint@poetaster.de> - 1.4.1
 - [FEATURE] #5 replace pydub method with ffmpeg
 - [FIX] Add noarch flag for build
