@@ -11,7 +11,7 @@ Name:       harbour-audiocut
 # << macros
 
 Summary:    Audioworks
-Version:    1.4
+Version:    1.4.1
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3

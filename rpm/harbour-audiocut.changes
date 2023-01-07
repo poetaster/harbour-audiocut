@@ -11,3 +11,22 @@
 
 # * date Author's Name <author's email> version-release
 # - Summary of changes
+#
+* Fri Dec 9 2022 Mark Washeim <blueprint@poetaster.de> 1.4
+- Move to noarch.
+- Bump version for release.
+- update pydub to 2.5.1
+
+* Wed May 18 2022 Mark Washeim <blueprint@poetaster.de> 1.3
+- Sailjail with Compatibility Removed call to which, not allowed in harbour Bumped the version.
+
+* Mon May 9 2022 Mark Washeim <blueprint@poetaster.de> 1.2.0
+- Minor mods for:  Sailjail exclusion and (c) updates and a version bump
+
+* Sat Jan 22 2022 Mark Washeim <blueprint@poetaster.de> 1.1.0
+- Added chum meta Added build and requires sections for chum installs. 
+- Modified .cache entries for new sailjail sets.
+
+* Mon Aug 9 2021 Mark Washeim <blueprint@poetaster.de> 1.0
+- Removed unused depends.
+
