@@ -8,10 +8,14 @@
 # Alternatively, if your changelog is automatically generated (e.g. with
 # the git-change-log command provided with Sailfish OS SDK), create a
 # harbour-audiocut.changes.run script to let mb2 run the required commands for you.
-
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 #
+
+* Sat Jan 07 2023 Mark Washeim <blueprint@poetaster.de> - 1.4.1
+- [FEATURE] #5 replace pydub method with ffmpeg
+- [FIX] Add noarch flag for build
+
 * Fri Dec 9 2022 Mark Washeim <blueprint@poetaster.de> 1.4
 - Move to noarch.
 - Bump version for release.
