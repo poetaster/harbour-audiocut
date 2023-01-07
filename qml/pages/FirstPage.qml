@@ -318,13 +318,15 @@ Page {
             var factorSpeed = idSpeedSlider.value
             if (idComboBoxSpeedPitch.currentIndex === 0) {
                 var keepPitch = "false"
+                call("audiox.speedChange", [ inputPathPy, outputPathPy, tempAudioType, fromPosMillisecond, toPosMillisecond, factorSpeed, keepPitch ])
             }
             else {
                 keepPitch = "true"
+                call("audiox.slowDown", [ inputPathPy, outputPathPy, tempAudioType, factorSpeed ])
             }
             //console.log(keepPitch)
             //console.log(factorSpeed)
-            call("audiox.speedChange", [ inputPathPy, outputPathPy, tempAudioType, fromPosMillisecond, toPosMillisecond, factorSpeed, keepPitch ])
+            //call("audiox.speedChange", [ inputPathPy, outputPathPy, tempAudioType, fromPosMillisecond, toPosMillisecond, factorSpeed, keepPitch ])
         }
         function reverseAudio() {
             preparePathAndUndo()
@@ -1259,7 +1261,7 @@ Page {
                 value: 1
                 smooth: true
                 stepSize: 0.05
-                minimumValue: (idComboBoxSpeedPitch.currentIndex === 0) ? 0.5 : 1 // pydub can not keep pitch when slower than usual
+                minimumValue: 0.5 //(idComboBoxSpeedPitch.currentIndex === 0) ? 0.5 : 1 // pydub can not keep pitch when slower than usual
                 maximumValue: 2
                 Label {
                     text: qsTr("x ") + parent.value

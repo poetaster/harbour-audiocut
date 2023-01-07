@@ -307,7 +307,10 @@ def echoEffect ( inputPathPy, outputPathPy, tempAudioType, in_gain, out_gain, de
     subprocess.run([ "/usr/bin/ffmpeg", "-y", "-i", "/"+inputPathPy, "-af", "aecho=" + str(in_gain) + ":" + str(out_gain) + ":" + str(delays) + ":" + str(decays), "/"+outputPathPy, "-hide_banner" ])
     pyotherside.send('loadTempAudio', outputPathPy )
 
-
+# Replace the pydub version which is flake
+def slowDown ( inputPathPy, outputPathPy, tempAudioType, tempo ):
+    subprocess.run([ "/usr/bin/ffmpeg", "-y", "-i", "/"+inputPathPy, "-af", "atempo=" + str(tempo), "/"+outputPathPy, "-hide_banner" ])
+    pyotherside.send('loadTempAudio', outputPathPy )
 
 
 
