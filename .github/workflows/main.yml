@@ -2,6 +2,8 @@ name: Build RPMs
 
 on:
   push:
+    tags:
+      - '*'
     branches:
       - main
     paths:
