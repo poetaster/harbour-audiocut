@@ -15,6 +15,7 @@ Version:    1.4
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
+BuildArch:  noarch
 URL:        https://github.com/poetaster/harbour-audiocut
 Source0:    %{name}-%{version}.tar.bz2
 Requires:   sailfishsilica-qt5 >= 0.10.9
