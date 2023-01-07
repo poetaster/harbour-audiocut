@@ -19,8 +19,8 @@ DISTFILES += qml/harbour-audiocut.qml \
     qml/pages/About.qml \
     qml/pages/FirstPage.qml \
     qml/pages/SavePage.qml \
-    rpm/harbour-audiocut.changes.in \
-    rpm/harbour-audiocut.changes.run.in \
+    rpm/harbour-audiocut.changes \
+    rpm/harbour-audiocut.changes.run \
     rpm/harbour-audiocut.spec \
     translations/*.ts \
     harbour-audiocut.desktop
