@@ -24,7 +24,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> © 2021-22 Mark Washeim</source>
+        <source> © 2021-23 Mark Washeim</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
