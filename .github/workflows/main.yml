@@ -3,7 +3,7 @@ name: Build RPMs
 on:
   push:
     tags:
-      - '1.4.*'
+      - '1.5.*'
     branches:
       - main
   workflow_dispatch:
