@@ -194,48 +194,71 @@
         <source>Audioworks</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>flanger</source>
+        <translation type="unfinished">flanger</translation>
+    </message>
+</context>
+<context>
+    <name>Flanger</name>
+    <message>
+        <source> flanger speed</source>
+        <translation type="unfinished">flanger Geschwindigkeit</translation>
+    </message>
+    <message>
+        <source> flanger delay</source>
+        <translation type="unfinished">flanger Verzögerung</translation>
+    </message>
+    <message>
+        <source> flanger phase</source>
+        <translation type="unfinished">flanger Phase</translation>
+    </message>
+    <message>
+        <source> flanger depth</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SavePage</name>
     <message>
         <source>Save as</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Speichern unter</translation>
     </message>
     <message>
         <source>overwrite...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">überschreiben</translation>
     </message>
     <message>
         <source>Original Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ursprünglicher Ordner</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pfade</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Größe</translation>
     </message>
     <message>
         <source>Artist</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Künstler</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Titel</translation>
     </message>
     <message>
         <source>Album</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Album</translation>
     </message>
     <message>
         <source>Year</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Jahr</translation>
     </message>
     <message>
         <source>Track#</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Track#</translation>
     </message>
     <message>
         <source>Source file</source>
@@ -247,7 +270,7 @@
     </message>
     <message>
         <source>LAME encoder for mp3 is not yet installed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">LAME Enkodierer, mp3, nicht installiert.</translation>
     </message>
 </context>
 </TS>

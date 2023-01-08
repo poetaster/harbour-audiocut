@@ -1,4 +1,4 @@
-import QtQuick 2.0
+﻿import QtQuick 2.0
 import Sailfish.Silica 1.0
 import Sailfish.Pickers 1.0 // File-Loader
 import QtMultimedia 5.0 // Audio Support
@@ -9,6 +9,12 @@ Page {
     allowedOrientations: Orientation.Portrait //All
     property bool debug : true
     // file variables
+
+    property string inputPathPy : decodeURIComponent( "/" + idAudioPlayer.source.toString().replace(/^(file:\/{3})|(qrc:\/{2})|(http:\/{2})/,"") )
+    property string saveAudioFolderPath
+    property string symbolSourceFolder : "/usr" + "/share" + "/harbour-audiocut" + "/qml" + "/symbols/"
+    property string lastTmpAudio2delete
+    property string lastTmpImage2delete
     property string origAudioFilePath
     property string origAudioFileName
     property string origAudioFolderPath
@@ -18,11 +24,6 @@ Page {
     property string tempAudioFolderPath: StandardPaths.home + '/.cache/de.poetaster/harbour-audiocut'
     property string tempAudioType : "wav"
     property string outputPathPy
-    property string inputPathPy : decodeURIComponent( "/" + idAudioPlayer.source.toString().replace(/^(file:\/{3})|(qrc:\/{2})|(http:\/{2})/,"") )
-    property string saveAudioFolderPath
-    property string symbolSourceFolder : "/usr" + "/share" + "/harbour-audiocut" + "/qml" + "/symbols/"
-    property string lastTmpAudio2delete
-    property string lastTmpImage2delete
 
     // UI variables
     property bool warningNoPydub : false
@@ -39,7 +40,6 @@ Page {
     property var hideMarkersPaste : (buttonCopyPaste.down && idComboBoxToolsCopyPaste.currentIndex != 0 ) ? true : false
     property var markersDiffExists : ( (toPosMillisecond - fromPosMillisecond) > 0 ) ? true : false
 
-
     // audio variables
     // careful: QML multimedia calculates audio duration different than Python and changes during playback -> correction factor for playback
     property var millisecondsPerPixelPython : 0
@@ -54,15 +54,10 @@ Page {
     property var fromPosMillisecond : Math.round(fromPosPixel * millisecondsPerPixelPython)
     property var toPosMillisecond : Math.round(toPosPixel * millisecondsPerPixelPython)
 
-
     Component.onCompleted: {
         if(debug) console.debug(tempAudioFolderPath)
         py.getHomePath()
     }
-
-
-
-
     Timer {
         id: idTimerPlay
         running: false
@@ -134,6 +129,9 @@ Page {
     RemorsePopup {
         id: remorse
     }
+
+
+    // global python
 
     Python {
         id: py
@@ -384,9 +382,18 @@ Page {
             var filterOrder = 1 // ...4
             call("audiox.highPassFilter", [ inputPathPy, outputPathPy, tempAudioType, filterFrequency, filterOrder ])
         }
-
-
-
+        // https://ffmpeg.org/ffmpeg-filters.html#flanger
+        function flangerEffect() {
+            preparePathAndUndo()
+            var speed = flanger.speed // 0.1 - 10 Hz
+            var delay = flanger.delay // 0-30
+            var depth = flanger.depth // 0 - 10
+            var phase = flanger.phase // 0 - 100
+            var regen = 5 // -95 - 95
+            //shape // sinusoidal / triangular
+            // width // 0-100 71 default
+            call("audiox.flangerEffect", [ inputPathPy, outputPathPy, tempAudioType, speed, depth, phase, delay, regen ])
+        }
 
         onError: {
             // when an exception is raised, this error handler will be called
@@ -397,10 +404,6 @@ Page {
             console.log('got message from python: ' + data);
         }
     } // end python
-
-
-
-
 
     // To enable PullDownMenu, place our content in a SilicaFlickable
     SilicaFlickable {
@@ -1340,7 +1343,7 @@ Page {
                 anchors.rightMargin: Theme.paddingLarge
                 ComboBox {
                     id: idComboBoxToolsEffects
-                    width: parent.width / 5 * 4
+                    width: parent.width / 5 * 4 // 6?
                     menu: ContextMenu {
                         MenuItem {
                             text: qsTr("denoise")
@@ -1360,6 +1363,10 @@ Page {
                         }
                         MenuItem {
                             text: qsTr("high-pass filter")
+                            font.pixelSize: Theme.fontSizeExtraSmall
+                        }
+                        MenuItem {
+                            text: qsTr("flanger")
                             font.pixelSize: Theme.fontSizeExtraSmall
                         }
                     }
@@ -1385,6 +1392,9 @@ Page {
                         }
                         if (idComboBoxToolsEffects.currentIndex === 4) {
                             py.highPassFilter()
+                        }
+                        if (idComboBoxToolsEffects.currentIndex === 5) {
+                            py.flangerEffect()
                         }
                     }
                 }
@@ -1489,6 +1499,16 @@ Page {
                     bottom: 0
                     top: 20000
                 }
+            }
+            Flanger {
+                id: flanger
+                enabled: ( finishedLoading === true && showTools === true )
+                visible: ( buttonEffects.down && idComboBoxToolsEffects.currentIndex === 5  )
+                anchors.top: idSubmenuEffects.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.leftMargin: Theme.paddingLarge
+                anchors.rightMargin: Theme.paddingLarge
             }
 
 

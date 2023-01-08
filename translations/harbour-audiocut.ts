@@ -194,6 +194,29 @@
         <source>Audioworks</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>flanger</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Flanger</name>
+    <message>
+        <source> flanger speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> flanger delay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> flanger phase</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> flanger depth</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SavePage</name>
