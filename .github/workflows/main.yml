@@ -50,9 +50,11 @@ jobs:
         continue-on-error: true
       - name: Extract Version Name
         run: |
+          cd $GITHUB_WORKSPACE
           echo "VERSION_NAME=$(git describe --tags `git rev-list --tags --max-count=1`)" >> $GITHUB_ENV
       - name: Extract Version Comment
         run: |
+          cd $GITHUB_WORKSPACE
           echo "TAG_MESSAGE=$(git tag -l --format='%(refname:strip=2) %(contents:subject)' $(git describe --tags `git rev-list --tags --max-count=1`) )" >> $GITHUB_ENV
       - name: Create a Release
         uses: softprops/action-gh-release@v1
