@@ -307,9 +307,12 @@ def echoEffect ( inputPathPy, outputPathPy, tempAudioType, in_gain, out_gain, de
     subprocess.run([ "/usr/bin/ffmpeg", "-y", "-i", "/"+inputPathPy, "-af", "aecho=" + str(in_gain) + ":" + str(out_gain) + ":" + str(delays) + ":" + str(decays), "/"+outputPathPy, "-hide_banner" ])
     pyotherside.send('loadTempAudio', outputPathPy )
 
-#call("audiox.flangerEffect", [ inputPathPy, outputPathPy, tempAudioType, speed, depth, phase, delay, regen ])
 def flangerEffect ( inputPathPy, outputPathPy, tempAudioType, speed, depth, phase, delay, regen ):
     subprocess.run([ "/usr/bin/ffmpeg", "-y", "-i", "/"+inputPathPy, "-af", "flanger=speed=" + str(speed) + ":depth=" + str(depth) + ":phase=" + str(phase) + ":delay=" + str(delay) + ":regen=" + str(regen), "/"+outputPathPy, "-hide_banner" ])
+    pyotherside.send('loadTempAudio', outputPathPy )
+
+def phaserEffect ( inputPathPy, outputPathPy, tempAudioType,in_gain, out_gain, delay, decay, speed ):
+    subprocess.run([ "/usr/bin/ffmpeg", "-y", "-i", "/"+inputPathPy, "-af", "aphaser=speed=" + str(speed) + ":delay=" + str(delay) + ":decay=" + str(decay) + ":in_gain=" + str(in_gain) + ":out_gain=" + str(out_gain), "/"+outputPathPy, "-hide_banner" ])
     pyotherside.send('loadTempAudio', outputPathPy )
 
 # Replace the pydub version which is flake

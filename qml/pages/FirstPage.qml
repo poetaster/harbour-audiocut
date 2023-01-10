@@ -7,7 +7,7 @@ import io.thp.pyotherside 1.4
 Page {
     id: page
     allowedOrientations: Orientation.Portrait //All
-    property bool debug : true
+    property bool debug : false
     // file variables
 
     property string inputPathPy : decodeURIComponent( "/" + idAudioPlayer.source.toString().replace(/^(file:\/{3})|(qrc:\/{2})|(http:\/{2})/,"") )
@@ -382,6 +382,7 @@ Page {
             var filterOrder = 1 // ...4
             call("audiox.highPassFilter", [ inputPathPy, outputPathPy, tempAudioType, filterFrequency, filterOrder ])
         }
+
         // https://ffmpeg.org/ffmpeg-filters.html#flanger
         function flangerEffect() {
             preparePathAndUndo()
@@ -393,6 +394,19 @@ Page {
             //shape // sinusoidal / triangular
             // width // 0-100 71 default
             call("audiox.flangerEffect", [ inputPathPy, outputPathPy, tempAudioType, speed, depth, phase, delay, regen ])
+        }
+
+        // https://ffmpeg.org/ffmpeg-filters.html#aphaser
+        function phaserEffect() {
+            preparePathAndUndo()
+            var in_gain = 0.5
+            var out_gain = 0.75
+            var speed = phaser.speed // 0.1 - 10 Hz
+            var delay = phaser.delay // 0-30
+            var decay = phaser.decay // 0 - 10
+            //shape // sinusoidal / triangular
+            // width // 0-100 71 default
+            call("audiox.phaserEffect", [ inputPathPy, outputPathPy, tempAudioType, in_gain, out_gain, delay, decay, speed ])
         }
 
         onError: {
@@ -1369,6 +1383,10 @@ Page {
                             text: qsTr("flanger")
                             font.pixelSize: Theme.fontSizeExtraSmall
                         }
+                        MenuItem {
+                            text: qsTr("phaser")
+                            font.pixelSize: Theme.fontSizeExtraSmall
+                        }
                     }
                 }
                 IconButton {
@@ -1395,6 +1413,9 @@ Page {
                         }
                         if (idComboBoxToolsEffects.currentIndex === 5) {
                             py.flangerEffect()
+                        }
+                        if (idComboBoxToolsEffects.currentIndex === 6) {
+                            py.phaserEffect()
                         }
                     }
                 }
@@ -1504,6 +1525,16 @@ Page {
                 id: flanger
                 enabled: ( finishedLoading === true && showTools === true )
                 visible: ( buttonEffects.down && idComboBoxToolsEffects.currentIndex === 5  )
+                anchors.top: idSubmenuEffects.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.leftMargin: Theme.paddingLarge
+                anchors.rightMargin: Theme.paddingLarge
+            }
+            Phaser {
+                id: phaser
+                enabled: ( finishedLoading === true && showTools === true )
+                visible: ( buttonEffects.down && idComboBoxToolsEffects.currentIndex === 6  )
                 anchors.top: idSubmenuEffects.bottom
                 anchors.left: parent.left
                 anchors.right: parent.right

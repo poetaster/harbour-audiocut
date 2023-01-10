@@ -198,6 +198,10 @@
         <source>flanger</source>
         <translation type="unfinished">flanger</translation>
     </message>
+    <message>
+        <source>phaser</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Flanger</name>
@@ -215,6 +219,21 @@
     </message>
     <message>
         <source> flanger depth</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Phaser</name>
+    <message>
+        <source> phaser speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> phaser delay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> phaser decay</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

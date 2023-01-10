@@ -19,6 +19,7 @@ DISTFILES += qml/harbour-audiocut.qml \
     qml/pages/About.qml \
     qml/pages/FirstPage.qml \
     qml/pages/Flanger.qml \
+    qml/pages/Phaser.qml \
     qml/pages/SavePage.qml \
     rpm/harbour-audiocut.changes \
     rpm/harbour-audiocut.changes.run \
