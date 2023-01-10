@@ -219,22 +219,22 @@
     </message>
     <message>
         <source> flanger depth</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">flanger Tiefe</translation>
     </message>
 </context>
 <context>
     <name>Phaser</name>
     <message>
         <source> phaser speed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Geschwindigkeit</translation>
     </message>
     <message>
         <source> phaser delay</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verzögerung</translation>
     </message>
     <message>
         <source> phaser decay</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dämpfung</translation>
     </message>
 </context>
 <context>

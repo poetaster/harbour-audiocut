@@ -88,5 +88,6 @@ desktop-file-install --delete-original       \
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 %attr(644,root,root) %{_datadir}/%{name}/qml/py/audiox.py
+
 # >> files
 # << files
