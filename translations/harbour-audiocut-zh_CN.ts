@@ -314,5 +314,9 @@
         <source>LAME encoder for mp3 is not yet installed.</source>
         <translation>未安装适用于mp3的 LAME 编码器。</translation>
     </message>
+    <message>
+        <source>LAME only works when started from terminal.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

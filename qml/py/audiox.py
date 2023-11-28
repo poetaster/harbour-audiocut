@@ -98,17 +98,39 @@ def getAudioTagsFunction ( inputPathPy ):
 
 
 def saveFile ( inputPathPy, savePath, tempAudioFolderPath, tempAudioType, newFileName, newFileType, mp3Bitrate, mp3CompressBitrateType, tagTitle, tagArtist, tagAlbum, tagDate, tagTrack ):
+    # mp3 only from cli
+    # these methods are from pydub since they don't run as is
+    conversion_command = ['ffmpeg' , "-vn"] # drop video
+    conversion_command.extend ([ "-i", inputPathPy ])
+    conversion_command.extend([ "-f", newFileType ])
+    conversion_command.extend( ['-metadata', "title="+str(tagTitle) ])
+    conversion_command.extend( ['-metadata', "artist="+str(tagArtist) ])
+    conversion_command.extend( ['-metadata', "album="+str(tagAlbum) ])
+    conversion_command.extend( ['-metadata', "year="+str(tagDate) ])
+    conversion_command.extend( ['-metadata', "track="+str(tagTrack) ])
+
     if "mp3" in newFileType :
+        # mp3 ffmpeg -i input.wav -codec:a libmp3lame -qscale:a 2 output.mp3
         sound = AudioSegment.from_file( inputPathPy )
         outputPathTmp = tempAudioFolderPath + "audioWAV" + ".tmp" + "." + tempAudioType
         sound.export( outputPathTmp, format = tempAudioType )
         subprocess.run([ "lame", mp3CompressBitrateType, "--tt", str(tagTitle), "--ta", str(tagArtist), "--tl", str(tagAlbum), "--ty", str(tagDate), "--tn", str(tagTrack), "/"+outputPathTmp, "/"+savePath ])
+
     elif "ogg" in newFileType :
-        sound = AudioSegment.from_file( inputPathPy )
-        sound.export( "/" + savePath, format = newFileType, tags={'title':str(tagTitle), 'artist':str(tagArtist), 'album':str(tagAlbum), 'date':str(tagDate), 'track':str(tagTrack)  } )
+        #sound = AudioSegment.from_file( inputPathPy )
+        conversion_command.extend(["-acodec", "libvorbis"])
+        conversion_command.extend([ savePath ])
+        subprocess.run(conversion_command)
+
+        #sound.export( "/" + savePath, format = newFileType, tags={'title':str(tagTitle), 'artist':str(tagArtist), 'album':str(tagAlbum), 'date':str(tagDate), 'track':str(tagTrack)  } )
     elif "flac" in newFileType :
-        sound = AudioSegment.from_file( inputPathPy )
-        sound.export( "/" + savePath, format = newFileType, tags={'title':str(tagTitle), 'artist':str(tagArtist), 'album':str(tagAlbum), 'date':str(tagDate), 'track':str(tagTrack)  } )
+        #sound = AudioSegment.from_file( inputPathPy )
+        conversion_command.extend( ["-acodec", "flac"])
+        conversion_command.extend([ savePath ])
+        subprocess.run(conversion_command)
+
+        #subprocess.run([ "ffmpeg", '-i', inputPathPy, '-codec:a', 'flac', '/'+savePath ])
+        #sound.export( "/" + savePath, format = newFileType, tags={'title':str(tagTitle), 'artist':str(tagArtist), 'album':str(tagAlbum), 'date':str(tagDate), 'track':str(tagTrack)  } )
     else:
         sound = AudioSegment.from_file( inputPathPy )
         sound.export( "/" + savePath, format = newFileType )
@@ -120,7 +142,24 @@ def saveFile ( inputPathPy, savePath, tempAudioFolderPath, tempAudioType, newFil
     pyotherside.send('fileIsSaved', )
     pyotherside.send('finishedSavingRenaming', savePath, newFileName, newFileType)
 
+# an example using pyav
+def to_wav(in_path: str, out_path: str = None, sample_rate: int = 16000) -> str:
+    """Arbitrary media files to wav"""
+    if out_path is None:
+        out_path = os.path.splitext(in_path)[0] + '.wav'
+    with av.open(in_path) as in_container:
+        in_stream = in_container.streams.audio[0]
+        with av.open(out_path, 'w', 'wav') as out_container:
+            out_stream = out_container.add_stream(
+                'pcm_s16le',
+                rate=sample_rate,
+                layout='mono'
+            )
+            for frame in in_container.decode(in_stream):
+                for packet in out_stream.encode(frame):
+                    out_container.mux(packet)
 
+    return out_path
 
 
 
@@ -141,7 +180,6 @@ def getAudioLength ( inputPathPy ):
     sound = AudioSegment.from_file(inputPathPy)
     audioLengthMilliseconds = len(sound)
     pyotherside.send('getAudioLenghtPy', audioLengthMilliseconds )
-
 
 
 

@@ -15,4 +15,4 @@ Name=Audioworks
 #Sandboxing=disabled
 OrganizationName=de.poetaster
 ApplicationName=harbour-audiocut
-Permissions=Camera;Audio;Microphone;MediaIndexing;RemovableMedia;UserDirs;Compatibility
+Permissions=Compatibility;Camera;Audio;Microphone;MediaIndexing;Music;RemovableMedia;UserDirs

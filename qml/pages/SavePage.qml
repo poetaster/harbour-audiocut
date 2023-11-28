@@ -141,7 +141,7 @@ Page {
 
         onError: {
             // when an exception is raised, this error handler will be called
-            //console.log('python error: ' + traceback);
+            console.log('python error: ' + traceback);
         }
         onReceived: {
             // asychronous messages from Python arrive here; done there via pyotherside.send()
@@ -286,6 +286,14 @@ Page {
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.errorColor
                 text: qsTr("LAME encoder for mp3 is not yet installed.")
+            }
+            Label {
+                x: Theme.paddingLarge * 1.2
+                visible: warningNoLAME === false
+                width: parent.width - 2*Theme.paddingLarge
+                font.pixelSize: Theme.fontSizeExtraSmall
+                color: Theme.errorColor
+                text: qsTr("LAME only works when started from terminal.")
             }
 
             Item {
