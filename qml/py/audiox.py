@@ -315,6 +315,14 @@ def phaserEffect ( inputPathPy, outputPathPy, tempAudioType,in_gain, out_gain, d
     subprocess.run([ "/usr/bin/ffmpeg", "-y", "-i", "/"+inputPathPy, "-af", "aphaser=speed=" + str(speed) + ":delay=" + str(delay) + ":decay=" + str(decay) + ":in_gain=" + str(in_gain) + ":out_gain=" + str(out_gain), "/"+outputPathPy, "-hide_banner" ])
     pyotherside.send('loadTempAudio', outputPathPy )
 
+def chorusEffect ( inputPathPy, outputPathPy, tempAudioType, delay, decay, speed, depth ):
+    delays = str(format(delay,'.0f')) + "|" + str(format(delay + 10,'.0f'))
+    decays = str(format(decay,'.2f')) + "|" + str(format(decay +.2,'.2f'))
+    speeds = str(format(speed,'.2f')) + "|" + str(format(speed +.2,'.2f'))
+    depths = str(format(depth,'.2f')) + "|" + str(format(depth +.2,'.2f'))
+    subprocess.run([ "/usr/bin/ffmpeg", "-y", "-i", "/"+inputPathPy, "-af", "chorus=0.5:0.8:" + str(delays) + ":" + str(decays) + ":" + str(speeds) + ":" + str(depths), "/"+outputPathPy, "-hide_banner" ])
+    pyotherside.send('loadTempAudio', outputPathPy )
+
 # Replace the pydub version which is flake
 def slowDown ( inputPathPy, outputPathPy, tempAudioType, tempo ):
     subprocess.run([ "/usr/bin/ffmpeg", "-y", "-i", "/"+inputPathPy, "-af", "atempo=" + str(tempo), "/"+outputPathPy, "-hide_banner" ])

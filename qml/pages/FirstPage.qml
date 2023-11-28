@@ -408,6 +408,19 @@ Page {
             // width // 0-100 71 default
             call("audiox.phaserEffect", [ inputPathPy, outputPathPy, tempAudioType, in_gain, out_gain, delay, decay, speed ])
         }
+        // https://ffmpeg.org/ffmpeg-filters.html#achorus
+        function chorusEffect() {
+            preparePathAndUndo()
+            var in_gain = 0.5
+            var out_gain = 0.90
+            var speed = chorus.speed // 0.1 - 10 Hz
+            var delay = chorus.delay // 0-30
+            var decay = chorus.decay // 0 - 10
+            var depth = chorus.depth // 0 - 10
+            //shape // sinusoidal / triangular
+            // width // 0-100 71 default
+            call("audiox.chorusEffect", [ inputPathPy, outputPathPy, tempAudioType, delay, decay, speed, depth ])
+        }
 
         onError: {
             // when an exception is raised, this error handler will be called
@@ -1387,6 +1400,10 @@ Page {
                             text: qsTr("phaser")
                             font.pixelSize: Theme.fontSizeExtraSmall
                         }
+                        MenuItem {
+                            text: qsTr("chorus")
+                            font.pixelSize: Theme.fontSizeExtraSmall
+                        }
                     }
                 }
                 IconButton {
@@ -1416,6 +1433,9 @@ Page {
                         }
                         if (idComboBoxToolsEffects.currentIndex === 6) {
                             py.phaserEffect()
+                        }
+                        if (idComboBoxToolsEffects.currentIndex === 7) {
+                            py.chorusEffect()
                         }
                     }
                 }
@@ -1521,7 +1541,7 @@ Page {
                     top: 20000
                 }
             }
-            Flanger {
+            Flanger{
                 id: flanger
                 enabled: ( finishedLoading === true && showTools === true )
                 visible: ( buttonEffects.down && idComboBoxToolsEffects.currentIndex === 5  )
@@ -1531,10 +1551,20 @@ Page {
                 anchors.leftMargin: Theme.paddingLarge
                 anchors.rightMargin: Theme.paddingLarge
             }
-            Phaser {
+            Phaser{
                 id: phaser
                 enabled: ( finishedLoading === true && showTools === true )
                 visible: ( buttonEffects.down && idComboBoxToolsEffects.currentIndex === 6  )
+                anchors.top: idSubmenuEffects.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.leftMargin: Theme.paddingLarge
+                anchors.rightMargin: Theme.paddingLarge
+            }
+            Chorus{
+                id: chorus
+                enabled: ( finishedLoading === true && showTools === true )
+                visible: ( buttonEffects.down && idComboBoxToolsEffects.currentIndex === 7  )
                 anchors.top: idSubmenuEffects.bottom
                 anchors.left: parent.left
                 anchors.right: parent.right

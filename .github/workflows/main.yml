@@ -3,7 +3,7 @@ name: Build RPMs
 on:
   push:
     tags:
-      - "1.*"
+      - "v*"
 
 env:
   OS_VERSION: 4.4.0.68

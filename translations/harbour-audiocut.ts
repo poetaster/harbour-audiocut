@@ -29,6 +29,25 @@
     </message>
 </context>
 <context>
+    <name>Chorus</name>
+    <message>
+        <source>chorus speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> chorus delay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> chorus decay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> chorus depth</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FirstPage</name>
     <message>
         <source>Select audio file</source>
@@ -200,6 +219,10 @@
     </message>
     <message>
         <source>phaser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>chorus</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -6,12 +6,13 @@
 Name:       harbour-audiocut
 
 # >> macros
+%define _binary_payload w2.xzdio
 %define __provides_exclude_from ^%{_datadir}/%{name}/lib/.*\\.so\\>
 %define __requires_exclude_from ^%{_datadir}/%{name}/lib/.*\\.so\\>
 # << macros
 
 Summary:    Audioworks
-Version:    1.4.3
+Version:    1.4.4
 Release:    1
 Group:      Qt/Qt
 License:    GPLv3
@@ -20,8 +21,6 @@ URL:        https://github.com/poetaster/harbour-audiocut
 Source0:    %{name}-%{version}.tar.bz2
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   pyotherside-qml-plugin-python3-qt5
-Requires:   ffmpeg
-Requires:   ffmpeg-tools
 Requires:   libsailfishapp-launcher
 
 BuildRequires:  qt5-qttools-linguist
@@ -30,6 +29,10 @@ BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  desktop-file-utils
+
+%if "%{?vendor}" == "chum"
+Requires: lame
+%endif
 
 %description
 Audioworks is a small audio workbench. Trim/Splice, add echo! WIP.
@@ -42,7 +45,7 @@ Categories:
 DeveloperName: Mark Washeim (poetaster)
 Custom:
  - Repo: https://github.com/poetaster/harbour-audiocut
-Icon: https://github.com/poetaster/harbour-audiocut/raw/main/icons/172x172/harbour-audiocut.png
+Icon: https://raw.githubusercontent.com/poetaster/harbour-audiocut/main/icons/172x172/harbour-audiocut.png
 Screenshots:
  - https://raw.githubusercontent.com/poetaster/harbour-audiocut/main/screenshot-2.png
  - https://raw.githubusercontent.com/poetaster/harbour-audiocut/main/screenshot-3.png

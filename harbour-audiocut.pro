@@ -17,6 +17,7 @@ CONFIG += sailfishapp_qml
 DISTFILES += qml/harbour-audiocut.qml \
     qml/cover/CoverPage.qml \
     qml/pages/About.qml \
+    qml/pages/Chorus.qml \
     qml/pages/FirstPage.qml \
     qml/pages/Flanger.qml \
     qml/pages/Phaser.qml \

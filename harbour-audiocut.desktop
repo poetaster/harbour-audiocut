@@ -12,6 +12,7 @@ Name=Audioworks
 # Name[de]=Audiocut
 
 [X-Sailjail]
+#Sandboxing=disabled
 OrganizationName=de.poetaster
 ApplicationName=harbour-audiocut
 Permissions=Camera;Audio;Microphone;MediaIndexing;RemovableMedia;UserDirs;Compatibility
