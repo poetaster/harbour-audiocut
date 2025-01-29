@@ -32,6 +32,7 @@ BuildRequires:  desktop-file-utils
 
 %if "%{?vendor}" == "chum"
 Requires: lame
+Requires: ffmpeg
 %endif
 
 %description
