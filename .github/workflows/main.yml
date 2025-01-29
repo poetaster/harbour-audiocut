@@ -17,7 +17,7 @@ jobs:
         arch: ['armv7hl']
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Prepare
       run: docker pull coderus/sailfishos-platform-sdk:$OS_VERSION && mkdir output
@@ -31,7 +31,7 @@ jobs:
             sudo cp -r RPMS/*.rpm /share/output"
       
     - name: Upload RPM (${{ matrix.arch }})
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: rpm-${{ matrix.arch }}
         path: output
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download armv7hl
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: rpm-armv7hl
         continue-on-error: true
