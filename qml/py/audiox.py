@@ -100,7 +100,7 @@ def getAudioTagsFunction ( inputPathPy ):
 def saveFile ( inputPathPy, savePath, tempAudioFolderPath, tempAudioType, newFileName, newFileType, mp3Bitrate, mp3CompressBitrateType, tagTitle, tagArtist, tagAlbum, tagDate, tagTrack ):
     # mp3 only from cli
     # these methods are from pydub since they don't run as is
-    conversion_command = ['ffmpeg' , "-vn"] # drop video
+    conversion_command = ['/usr/bin/ffmpeg' , "-vn"] # drop video
     conversion_command.extend ([ "-i", inputPathPy ])
     conversion_command.extend([ "-f", newFileType ])
     conversion_command.extend( ['-metadata', "title="+str(tagTitle) ])
@@ -114,7 +114,7 @@ def saveFile ( inputPathPy, savePath, tempAudioFolderPath, tempAudioType, newFil
         sound = AudioSegment.from_file( inputPathPy )
         outputPathTmp = tempAudioFolderPath + "audioWAV" + ".tmp" + "." + tempAudioType
         sound.export( outputPathTmp, format = tempAudioType )
-        subprocess.run([ "lame", mp3CompressBitrateType, "--tt", str(tagTitle), "--ta", str(tagArtist), "--tl", str(tagAlbum), "--ty", str(tagDate), "--tn", str(tagTrack), "/"+outputPathTmp, "/"+savePath ])
+        subprocess.run([ "/usr/bin/lame", mp3CompressBitrateType, "--tt", str(tagTitle), "--ta", str(tagArtist), "--tl", str(tagAlbum), "--ty", str(tagDate), "--tn", str(tagTrack), "/"+outputPathTmp, "/"+savePath ])
 
     elif "ogg" in newFileType :
         #sound = AudioSegment.from_file( inputPathPy )
@@ -171,7 +171,7 @@ def to_wav(in_path: str, out_path: str = None, sample_rate: int = 16000) -> str:
 def createWaveformImage ( inputPathPy, outputWaveformPath, waveformColor, waveformPixelLength, waveformPixelHeight, stretch ):
     waveformPixelLength = str(int(waveformPixelLength))
     waveformPixelHeight = str(int(waveformPixelHeight))
-    subprocess.run([ "ffmpeg", "-hide_banner", "-y", "-i", "/"+inputPathPy, "-filter_complex", stretch+"showwavespic=s="+waveformPixelLength+"x"+waveformPixelHeight+":colors="+waveformColor, "-frames:v", "1", "/"+outputWaveformPath ])
+    subprocess.run([ "/usr/bin/ffmpeg", "-hide_banner", "-y", "-i", "/"+inputPathPy, "-filter_complex", stretch+"showwavespic=s="+waveformPixelLength+"x"+waveformPixelHeight+":colors="+waveformColor, "-frames:v", "1", "/"+outputWaveformPath ])
     sound = AudioSegment.from_file(inputPathPy)
     audioLengthMilliseconds = len(sound)
     pyotherside.send('loadImageWaveform', outputWaveformPath, audioLengthMilliseconds )
